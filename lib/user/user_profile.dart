@@ -1,6 +1,6 @@
 
-import 'package:blogapp/user/login.dart';
-import 'package:blogapp/user/userblogs.dart';
+import 'package:blogapp/auth/login.dart';
+import 'package:blogapp/user/user_blogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:io';
@@ -19,10 +19,7 @@ class _userprofileState extends ConsumerState<userprofile> {
   Widget build(BuildContext context) {
     String? profileUrl;
      profileUrl = ref.watch(profileUrlProvider);
-
     final userName = ref.watch(UserNameProvider);
-
-
     return Scaffold(
       backgroundColor: Colors.black87,
       appBar: AppBar(
@@ -56,10 +53,9 @@ class _userprofileState extends ConsumerState<userprofile> {
 
 
     });
-
       },
-      child: ClipRRect(
-      borderRadius: BorderRadius.circular(10),
+      child: ClipOval(
+    //  borderRadius: BorderRadius.circular(50),
           child:profileUrl!.isEmpty ? Image.network("https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png",
             width: 150,
             height: 150,)
@@ -82,6 +78,7 @@ class _userprofileState extends ConsumerState<userprofile> {
     SizedBox(height: 10,),
     ListTile(
     onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => userBlogs())),
+    leading: Icon(Icons.people_alt_sharp , color: Colors.white,),
     title: Text("My blogs",style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,

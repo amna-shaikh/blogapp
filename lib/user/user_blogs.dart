@@ -2,13 +2,16 @@ import 'dart:io';
 import 'package:blogapp/helper/notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../helper/statedemo.dart';
+import '../helper/list_notifier.dart';
 
-class userBlogs extends ConsumerWidget {
+class userBlogs extends ConsumerStatefulWidget {
+  ConsumerState<userBlogs> createState() => _userBlogsState();
+}
 
+class _userBlogsState extends ConsumerState<userBlogs> {
   //static List<blogModel> userList = [];
   @override
-  Widget build(BuildContext context, WidgetRef ref ) {
+  Widget build(BuildContext context) {
     final userlist = ref.read(userList);
     return Scaffold(
     backgroundColor: Colors.black87,
@@ -35,7 +38,7 @@ class userBlogs extends ConsumerWidget {
                       children: [
                     ListTile(
                       leading:  ClipRRect(
-                        borderRadius:  BorderRadius.circular(40),
+                        borderRadius:  BorderRadius.circular(50),
                         child: Image.file(File(userlist[index].userProfile),
                           height: 30,
                           width: 30,
@@ -46,6 +49,12 @@ class userBlogs extends ConsumerWidget {
                         userlist[index].username,
                         style: const TextStyle(color: Colors.white, fontSize: 12),
                       ) ,
+                      trailing: IconButton(onPressed: () {
+                        setState(() {
+                          userlist.removeAt(index);
+                        });
+
+                      }, icon: Icon(Icons.delete, size: 25,) , color: Colors.white,),
                     ),
                     const SizedBox(
                       height: 5,
@@ -58,7 +67,7 @@ class userBlogs extends ConsumerWidget {
                               child:
                               Image.file(File(userlist[index].imageURL),
                                 width: MediaQuery.of(context).size.width,
-                                height: 300,
+                                height: 200,
                                 fit: BoxFit.cover,
                                 filterQuality: FilterQuality.high,
                               )
@@ -67,21 +76,21 @@ class userBlogs extends ConsumerWidget {
                       height: 5,
                     ),
                     Container(
-                        color: Colors.white,
+                        color: Colors.black87,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 userlist[index].title,
-                                style: const TextStyle(fontSize: 25, color: Colors.white),
+                                style: const TextStyle(fontSize: 20, color: Colors.white),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Text(
                                 userlist[index].description,
-                                style: const TextStyle(fontSize: 20, color: Colors.white),
+                                style: const TextStyle(fontSize: 18, color: Colors.white),
                               ),
                             ])),
                   ]));

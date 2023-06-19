@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfileUrlNotifier extends StateNotifier<String> {
   ProfileUrlNotifier() : super('');
-
   void setProfileUrl(String url) {
     state = url;
   }

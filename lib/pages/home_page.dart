@@ -1,10 +1,10 @@
-import 'package:blogapp/helper/statedemo.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:blogapp/helper/list_notifier.dart';
+import 'package:blogapp/pages/single_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../user/userprofile.dart';
-import 'addblog.dart';
-import 'homepage.dart';
+import '../user/user_profile.dart';
+import 'add_blog.dart';
+
 
 class home extends ConsumerWidget {
   const home({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class home extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.blue,
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AddBlog()));

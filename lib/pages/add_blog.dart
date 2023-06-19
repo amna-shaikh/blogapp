@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:blogapp/helper/statedemo.dart';
+import 'package:blogapp/helper/list_notifier.dart';
 import 'package:blogapp/models/blogmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../helper/notifier.dart';
-import 'demohomepage.dart';
+import 'home_page.dart';
 
 class AddBlog extends ConsumerStatefulWidget {
   const AddBlog({super.key});
@@ -75,8 +75,10 @@ class _AddBlogState extends ConsumerState<AddBlog> {
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.high,
                         )),
+                  SizedBox(height: 5,),
                   TextFormField(
                     controller: titlecontroller,
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         labelText: "Add title",
                         labelStyle: const TextStyle(color: Colors.white),
@@ -84,9 +86,10 @@ class _AddBlogState extends ConsumerState<AddBlog> {
                           borderRadius: BorderRadius.circular(5),
                         )),
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(height: 10,),
                   TextFormField(
                     controller: description,
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         labelText: "Add Description",
                         labelStyle: const TextStyle(color: Colors.white),
@@ -127,7 +130,7 @@ class _AddBlogState extends ConsumerState<AddBlog> {
                                 title: titlecontroller.text,
                                 description: description.text,
                                 imageURL: imageFile!.path,
-                                userProfile: profileUrl.isEmpty ? "" : profileUrl
+                                userProfile: profileUrl.isEmpty ? "https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png" : profileUrl
                             ));
                             titlecontroller.clear();
                             description.clear();
@@ -149,9 +152,7 @@ class _AddBlogState extends ConsumerState<AddBlog> {
                           margin: const EdgeInsets.symmetric(horizontal: 10),
                           width: 200,
                           child: const LinearProgressIndicator(),
-                        ),
-                  imageFile==null? Container():
-                  Image.file(File(imageFile!.path))*/
+                        ),*/
                 ],
               ),
             ),
@@ -161,7 +162,7 @@ class _AddBlogState extends ConsumerState<AddBlog> {
             icon: Icons.add,
             foregroundColor: Colors.white,
             openCloseDial: isDialOpen,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.blue,
             children: [
               SpeedDialChild(
                   child: const Icon(

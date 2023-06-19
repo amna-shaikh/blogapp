@@ -29,8 +29,8 @@ class _commentPageState extends ConsumerState<commentPage> {
         itemCount: commentlist.length,
         itemBuilder: (context, index) {
            return ListTile(
-              subtitle: Text(commentlist[index].comment, style: TextStyle(color: Colors.black),),
-              title: Text(commentlist[index].username),
+              subtitle: Text(commentlist[index].comment, style: TextStyle(color: Colors.white),),
+              title: Text(commentlist[index].username, style: TextStyle(color: Colors.white)),
               leading: ClipRRect(
                   borderRadius:  BorderRadius.circular(50),
                   child: commentlist[index].userProfile.contains("https") ?
@@ -74,15 +74,18 @@ class _commentPageState extends ConsumerState<commentPage> {
            Padding(
              padding: EdgeInsets.all(8),
              child: TextField(
+               style:TextStyle(color: Colors.white) ,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text("Add comment")
+                    label: Text("Add comment"),
+                    labelStyle: TextStyle(color: Colors.white)
                   ),
                   onSubmitted: (String value){
+
 setState(() {
   commentlist.add(
       commentModel(
-          userProfile:profile,
+          userProfile: profile.isEmpty ? "https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png" : profile,
           username: username,
           comment: value
       )

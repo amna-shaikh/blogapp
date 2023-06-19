@@ -1,24 +1,22 @@
-import 'package:blogapp/user/login.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:blogapp/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 import '../helper/notifier.dart';
-import '../pages/demohomepage.dart';
+import '../pages/home_page.dart';
 
-class signUpPage extends ConsumerWidget {
-  //const signUpPage({Key? key}) : super(key: key);
+class loginpage extends ConsumerWidget {
+
   TextEditingController usercontroller = TextEditingController();
-
   TextEditingController passcontroller = TextEditingController();
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
+  Widget build(BuildContext context, WidgetRef ref) {
 
-  Widget build(BuildContext context , WidgetRef ref ) {
     final userNotifier = ref.read(UserNameProvider.notifier);
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black87,
@@ -40,7 +38,7 @@ class signUpPage extends ConsumerWidget {
 
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10 , horizontal: 20),
-              child: Text("Create Account",  style: TextStyle(
+              child: Text("Login to your Account",  style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
                   color: Colors.white
@@ -62,14 +60,14 @@ class signUpPage extends ConsumerWidget {
                     labelStyle: TextStyle(
                       color: Colors.white,
                     ),
-                    hintText: 'Enter Your name',
+                    hintText: 'Enter Your Name',
                     hintStyle: TextStyle(
                       color: Colors.white,
                     )
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter Name';
+                    return 'Please enter name';
                   }
                   return null;
                 },
@@ -101,9 +99,6 @@ class signUpPage extends ConsumerWidget {
                   if (value!.isEmpty) {
                     return 'Please enter password';
                   }
-                  else if(value.length < 6){
-                    return "password length must be 6";
-                  }
                   return null;
                 },
               ),
@@ -119,12 +114,11 @@ class signUpPage extends ConsumerWidget {
                     fixedSize: const Size(350, 50)
                 ),
                 onPressed: ()  {
-                  if (_formKey.currentState!.validate())  {
-
+                  if (_formKey.currentState!.validate()) {
                     userNotifier.setUserName(usercontroller.text);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => home()));
                   }
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => home()));
-                }, child: const Text("Create Account" , style: TextStyle(
+                }, child: const Text("Login" , style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.white
@@ -139,9 +133,9 @@ class signUpPage extends ConsumerWidget {
                 child: SignInButton(
                   Buttons.google,
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  text: "Sign up with google",
-                  onPressed: ()  {
+                  onPressed: () async {
 
+                    await  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => home()));
                   },
                 ),
               ),
@@ -149,14 +143,14 @@ class signUpPage extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Already have account?", style: TextStyle(
+                const Text("Don't have account?", style: TextStyle(
                     fontSize: 15 ,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey
                 )),
                 TextButton(onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  loginpage()));
-                }, child:const Text("Login", style: TextStyle(
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signUpPage()) );
+                }, child:Text("Create account", style: TextStyle(
                     fontSize: 15 ,
                     fontWeight: FontWeight.w400,
                     color: Colors.blue
