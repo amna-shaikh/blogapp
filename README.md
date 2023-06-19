@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+I have created a blog app which has following features:
 
-A few resources to get you started if this is your first Flutter project:
+- Login/signup
+- Different userblogs on home screen.
+- User can like and comment on other users blog.
+- user can upload thier blogs with title and description.
+- User may change thier profile picture.
+- Also, they can read, and delete thier blogs.
+- Log out.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
